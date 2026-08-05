@@ -13,6 +13,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = "resumes"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
+# Create Upload Folder
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
@@ -66,11 +67,11 @@ def analyze():
 
     # Resume Match Score Color
     if score >= 70:
-        score_color = "#28a745"      # Green
+        score_color = "#28a745"
     elif score >= 40:
-        score_color = "#ffc107"      # Yellow
+        score_color = "#ffc107"
     else:
-        score_color = "#dc3545"      # Red
+        score_color = "#dc3545"
 
     # ATS Score Color
     if ats_score >= 70:
@@ -95,5 +96,12 @@ def analyze():
     )
 
 
+# -------- Run App -------- #
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
