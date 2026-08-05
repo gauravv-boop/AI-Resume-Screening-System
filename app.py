@@ -53,11 +53,11 @@ def analyze():
     matched = list(set(resume_skills) & set(jd_skills))
     missing = list(set(jd_skills) - set(resume_skills))
 
-    # Suggestions
-    suggestions = generate_suggestions(missing)
-
     # AI Match Score
     score = calculate_match_score(resume_text, job_description)
+
+    # Suggestions
+    suggestions = generate_suggestions(score, missing)
 
     # ATS Score
     ats_score = calculate_ats_score(matched, missing)
@@ -96,8 +96,7 @@ def analyze():
     )
 
 
-# -------- Run App -------- #
-
+# Run Application
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(
