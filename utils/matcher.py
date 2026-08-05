@@ -1,14 +1,13 @@
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# AI model load
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
 def calculate_match_score(resume_text, job_description):
-    resume_embedding = model.encode([resume_text])
-    jd_embedding = model.encode([job_description])
+    documents = [resume_text, job_description]
 
-    similarity = cosine_similarity(resume_embedding, jd_embedding)[0][0]
+    vectorizer = TfidfVectorizer(stop_words="english")
+    tfidf_matrix = vectorizer.fit_transform(documents)
+
+    similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
 
     score = round(similarity * 100, 2)
 
