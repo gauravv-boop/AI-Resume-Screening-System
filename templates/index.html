@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Screening System</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 col-md-10">
+
+            <div class="glass-card">
+
+                <h1 class="text-center mb-3">
+                    🤖 AI Resume Screening System
+                </h1>
+
+                <p class="text-center text-light mb-5">
+                    Upload your Resume and compare it with any Job Description using Artificial Intelligence.
+                </p>
+
+                <form action="/analyze" method="POST" enctype="multipart/form-data">
+
+                    <!-- Resume Upload -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            📄 Upload Resume (PDF)
+                        </label>
+
+                        <input
+                                type="file"
+                                class="form-control"
+                                name="resume"
+                                accept=".pdf"
+                                required>
+
+                    </div>
+
+                    <!-- Job Description -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            💼 Job Description
+                        </label>
+
+                        <textarea
+                                class="form-control"
+                                name="job_description"
+                                rows="8"
+                                placeholder="Paste the Job Description here..."
+                                required></textarea>
+
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button
+                            id="analyzeBtn"
+                            type="submit"
+                            class="btn btn-primary btn-lg w-100">
+
+                        🚀 Analyze Resume
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Loading Button -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
